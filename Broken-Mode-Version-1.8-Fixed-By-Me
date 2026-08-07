@@ -16,7 +16,7 @@ CustomMusic.Looped = true
 CustomMusic:Play()
 
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("The Broken Mode Credits by TheDarkMan1334 & Fixed by Rip_Silence and Grampy!", true)
-wait(2)
+wait(2.5)
 require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Version 1.8 (Fixed)", true)
 
 local spawnedRooms = {} -- Track rooms that already spawned crucifix
