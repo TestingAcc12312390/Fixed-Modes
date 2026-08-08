@@ -1,3 +1,22 @@
+-- Global variable check using the shared table to persist across executions
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+if shared.BrokenModeExecuted then
+    local MainUI = LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("MainUI")
+    require(MainUI.Initiator.Main_Game).caption("Executed 2 times! Returning...", true)
+    return -- Stops the script right here so it doesn't run again
+else
+    shared.BrokenModeExecuted = true
+end
+
+-- Continuing with your door 0 check
+local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
+if currentRoom > 0 then
+    LocalPlayer.Character.Humanoid:TakeDamage(1000)
+    game:GetService("ReplicatedStorage").GameStats["Player_".. LocalPlayer.Name].Total.DeathCause.Value = "You must execute at door 0!"
+end
+
 local function getGitSoundId(GithubSoundPath: string, AssetName: string): Sound
     local Url = GithubSoundPath
 
@@ -247,7 +266,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(220)
+        task.wait(215)
  
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
@@ -263,7 +282,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(310)
+        task.wait(290)
         
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
@@ -279,7 +298,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(355)
+        task.wait(375)
         
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
@@ -295,7 +314,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(400)
+        task.wait(410)
         
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
