@@ -231,7 +231,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(145)
+        task.wait(155)
         
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
@@ -247,7 +247,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(170)
+        task.wait(195)
  
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
@@ -263,7 +263,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(210)
+        task.wait(240)
         
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
@@ -279,7 +279,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(280)
+        task.wait(295)
         
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
@@ -295,7 +295,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(330)
+        task.wait(340)
         
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
