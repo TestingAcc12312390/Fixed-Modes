@@ -224,7 +224,7 @@ coroutine.wrap(function()
         local bannedRooms = { [49] = true, [50] = true, [51] = true, [99] = true, [100] = true }
         
         if not bannedRooms[currentRoom] and not isSeekChase then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/TheDarkMan1334/Entity-update/refs/heads/main/Haters"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/TestingAcc12312390/Private-Entity/refs/heads/main/Hater-Entity"))()
         end
     end
 end)()
@@ -240,7 +240,7 @@ coroutine.wrap(function()
         local bannedRooms = { [49] = true, [50] = true, [51] = true, [99] = true, [100] = true }
         
         if not bannedRooms[currentRoom] and not isSeekChase then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/TheDarkMan1334/Entity-update/refs/heads/main/Cursed%20Doors"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/TestingAcc12312390/Private-Entity/refs/heads/main/Cursed-Door-Entity"))()
         end
     end
 end)()
@@ -256,7 +256,7 @@ game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local bannedRooms = { [49] = true, [50] = true, [51] = true, [99] = true, [100] = true }
         
         if not bannedRooms[currentRoom] and not isSeekChase then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/TheDarkMan1334/Entity-update/refs/heads/main/Depthter"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/TestingAcc12312390/Private-Entity/refs/heads/main/Depthter-Entity"))()
         end
     end
 end)()
