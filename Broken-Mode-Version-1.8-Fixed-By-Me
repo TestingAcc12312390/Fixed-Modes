@@ -34,10 +34,6 @@ CustomMusic.Parent = game:GetService("SoundService")
 CustomMusic.Looped = true
 CustomMusic:Play()
 
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("The Broken Mode Credits by TheDarkMan1334 & Fixed by Rip_Silence and Grampy!", true)
-wait(2.5)
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Version 1.8 (Fixed)", true)
-
 local spawnedRooms = {} -- Track rooms that already spawned crucifix
 
 function spawncruxy(posy)
@@ -111,9 +107,93 @@ game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
     end
 end)
 
-game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+local TweenService = game:GetService("TweenService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
 
-require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Good Luck!", true)
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- DOORS Guiding Light / Caption Sound (Public Roblox Asset)
+local CAPTION_SOUND_ID = "rbxassetid://9114221227"
+
+local function caption(text, duration, fadeOut, replaceOld)
+ -- Default parameters
+ duration = duration or 3
+ if replaceOld == nil then replaceOld = true end
+
+ -- Clean up existing captions if requested
+ if replaceOld then
+  for _, child in ipairs(playerGui:GetChildren()) do
+   if child.Name == "CaptionUI" then
+    child:Destroy()
+   end
+  end
+ end
+
+ -- ScreenGui Setup
+ local gui = Instance.new("ScreenGui")
+ gui.Name = "CaptionUI"
+ gui.ResetOnSpawn = false
+ gui.Parent = playerGui
+
+ -- Text Label
+ local textLabel = Instance.new("TextLabel")
+ textLabel.Size = UDim2.new(0.7, 0, 0.11, 0)
+ textLabel.Position = UDim2.new(0.5, 0, 0.67, 0)
+ textLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+ textLabel.BackgroundTransparency = 1
+ textLabel.Text = text
+ textLabel.Font = Enum.Font.Oswald
+ textLabel.TextScaled = true
+ textLabel.TextColor3 = Color3.fromRGB(0, 255, 0) -- Pure Vibrant Green
+ textLabel.TextTransparency = 0
+ textLabel.Parent = gui
+
+ -- Drop Shadow Stroke
+ local stroke = Instance.new("UIStroke")
+ stroke.Color = Color3.fromRGB(0, 35, 0) -- Deep green outline for contrast
+ stroke.Thickness = 2.5
+ stroke.Transparency = 0.2
+ stroke.Parent = textLabel
+
+ -- Caption Sound Effect
+ local sound = Instance.new("Sound")
+ sound.SoundId = CAPTION_SOUND_ID
+ sound.Volume = 1
+ sound.Parent = textLabel
+ sound:Play()
+
+ -- Lifetime management
+ task.spawn(function()
+  task.wait(duration)
+
+  if fadeOut then
+   local fadeOutText = TweenService:Create(textLabel, TweenInfo.new(1), {TextTransparency = 1})
+   local fadeOutStroke = TweenService:Create(stroke, TweenInfo.new(1), {Transparency = 1})
+
+   fadeOutText:Play()
+   fadeOutStroke:Play()
+
+   fadeOutText.Completed:Connect(function()
+    gui:Destroy()
+   end)
+  else
+   gui:Destroy()
+  end
+ end)
+end
+
+-- Sequence
+caption("The Broken Mode Credit by TheDarkMan1334 & Fixed by Rip_Silence and Grampy!", 2.8, false, true)
+
+task.wait(2.78)
+
+caption("Version 1.8 (Fixed)", 8, true, true)
+
+ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+
+caption("Good Luck!", 8, true, true)
 wait(1.7)
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
@@ -144,72 +224,72 @@ intro.Font = Enum.Font.GothamBold
 local underline = intro:FindFirstChild("Underline")
 
 if underline then
-	underline.AnchorPoint = Vector2.new(0.5, 0.5)
-	underline.Position = UDim2.new(0.5, 0, 1.02, 0)
-	underline.Size = UDim2.new(0, 0, 0, 6)
+ underline.AnchorPoint = Vector2.new(0.5, 0.5)
+ underline.Position = UDim2.new(0.5, 0, 1.02, 0)
+ underline.Size = UDim2.new(0, 0, 0, 6)
 
-	if underline:IsA("ImageLabel") or underline:IsA("ImageButton") then
-		underline.ImageColor3 = Color3.fromRGB(170, 170, 170)
-		underline.ImageTransparency = 1
-	elseif underline:IsA("Frame") then
-		underline.BackgroundColor3 = Color3.fromRGB(170, 170, 170)
-		underline.BackgroundTransparency = 1
-	end
+ if underline:IsA("ImageLabel") or underline:IsA("ImageButton") then
+  underline.ImageColor3 = Color3.fromRGB(170, 170, 170)
+  underline.ImageTransparency = 1
+ elseif underline:IsA("Frame") then
+  underline.BackgroundColor3 = Color3.fromRGB(170, 170, 170)
+  underline.BackgroundTransparency = 1
+ end
 end
 
 -- FADE IN
 TweenService:Create(
-	intro,
-	TweenInfo.new(1.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-	{TextTransparency = 0}
+ intro,
+ TweenInfo.new(1.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+ {TextTransparency = 0}
 ):Play()
 
 task.wait(0.5)
 
 -- UNDERLINE APPEARS
 if underline then
-	local properties = {
-		Size = UDim2.new(0.4, 0, 0, 6)
-	}
+ local properties = {
+  Size = UDim2.new(0.4, 0, 0, 6)
+ }
 
-	if underline:IsA("ImageLabel") or underline:IsA("ImageButton") then
-		properties.ImageTransparency = 0
-	elseif underline:IsA("Frame") then
-		properties.BackgroundTransparency = 0
-	end
+ if underline:IsA("ImageLabel") or underline:IsA("ImageButton") then
+  properties.ImageTransparency = 0
+ elseif underline:IsA("Frame") then
+  properties.BackgroundTransparency = 0
+ end
 
-	TweenService:Create(
-		underline,
-		TweenInfo.new(2.2, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
-		properties
-	):Play()
+ TweenService:Create(
+  underline,
+  TweenInfo.new(2.2, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+  properties
+ ):Play()
 end
 
 task.wait(7)
 
 -- FADE OUT
 TweenService:Create(
-	intro,
-	TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
-	{TextTransparency = 1}
+ intro,
+ TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
+ {TextTransparency = 1}
 ):Play()
 
 if underline then
-	local properties = {
-		Size = UDim2.new(0, 0, 0, 6)
-	}
+ local properties = {
+  Size = UDim2.new(0, 0, 0, 6)
+ }
 
-	if underline:IsA("ImageLabel") or underline:IsA("ImageButton") then
-		properties.ImageTransparency = 1
-	elseif underline:IsA("Frame") then
-		properties.BackgroundTransparency = 1
-	end
+ if underline:IsA("ImageLabel") or underline:IsA("ImageButton") then
+  properties.ImageTransparency = 1
+ elseif underline:IsA("Frame") then
+  properties.BackgroundTransparency = 1
+ end
 
-	TweenService:Create(
-		underline,
-		TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
-		properties
-	):Play()
+ TweenService:Create(
+  underline,
+  TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
+  properties
+ ):Play()
 end
 
 task.wait(2.2)
