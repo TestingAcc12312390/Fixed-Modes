@@ -394,7 +394,7 @@ end)()
 
 coroutine.wrap(function()
     while true do
-        task.wait(480)
+        task.wait(500)
         
         game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
         local currentRoom = game.ReplicatedStorage.GameData.LatestRoom.Value
