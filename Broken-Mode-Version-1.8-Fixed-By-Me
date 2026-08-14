@@ -265,7 +265,7 @@ if underline then
  ):Play()
 end
 
-task.wait(6.80)
+task.wait(6.67)
 
 -- FADE OUT
 TweenService:Create(
